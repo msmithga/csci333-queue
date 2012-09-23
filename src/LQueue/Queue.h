@@ -3,14 +3,14 @@
 
 class Queue {
  private:
-  int* theQueue;
+  Node* theQueue;
   int front;
   int back;
   int capacity;
   int numElements;
 
  public:
-  Queue(int initialSize = 10);
+  Queue();
   ~Queue();
   void enqueue(int value);
   int dequeue();
