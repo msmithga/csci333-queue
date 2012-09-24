@@ -3,7 +3,7 @@
 #include <assert.h>
 
 Node::Node(int value) {
-  Node n = value;
+  Node* n = value;
 }
 
 Node::~Node() {
@@ -11,6 +11,7 @@ Node::~Node() {
 }
 
 int Node::getValue() {
+  value = front;
   return value;
 }
 

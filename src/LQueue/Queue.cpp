@@ -14,25 +14,30 @@ Queue::~Queue(){
     dequeue();
     numElements--;
   }
-  assert(capacity = 0);
+  assert(numElements == 0);
 }
 
 void Queue::enqueue(int value) {
   Node* n = new Node(value);
-  front = n;
+  back = (back + 1)%capacity;
+  theQueue[back] = n;
   numElements++;
 }
 
 int Queue::dequeue() {
-  return value;
+  int result = theQueue[front];
+  front = (front + 1)%capacity;
+  numElements--;
+  return result;
 }
 
 int Queue::peek() {
-  return value;
+  assert(numElements != 0);
+  return front->getValue();
 }
 
 int Queue::size() {
-  return capacity;
+  return numElements;
 }
 
 bool Queue::isEmpty() {
