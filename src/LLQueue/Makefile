@@ -3,13 +3,13 @@ CPP = g++
 CPPFLAGS = -Wall -Wextra
 
 main: queue_test.cpp Queue.o
-	$(CPP) $(CPPFLAGS) -o $(BUILD)/AQueue queue_test.cpp Queue.o
+	$(CPP) $(CPPFLAGS) -o $(BUILD)/LLQueue queue_test.cpp Queue.o
 
 Queue.o: Queue.h Queue.cpp
 	$(CPP) $(CPPFLAGS) -c Queue.cpp
 
-clean:
+clean: 
 	rm -f *.o
 	rm -f *~
 	rm -f $(BUILD)/main
-	rm -f $(BUILD)/AQueue
+	rm -f $(BUILD)/LLQueue

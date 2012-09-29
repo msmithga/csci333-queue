@@ -2,6 +2,9 @@
 #include <iostream>
 #include <assert.h>
 
+using std::cout;
+using std::endl;
+
 Queue::Queue(int initialSize) {
   theQueue = new int[initialSize];
   front = 0;
@@ -14,15 +17,16 @@ Queue::~Queue() {
 }
 
 void Queue::enqueue(int value) {
-  int initialSize = size();
-
+  int oldSize;
   int* newQueue;
+  cout << "Made it here" << endl;
 
   if(numElements == capacity) {
-    capacity = initialSize*2;
-    for(int i = 0; i < capacity; ++i) {
-      newQueue = new int[capacity];
-      newQueue[i] = theQueue[i];
+    oldSize = capacity;
+    capacity = capacity*2;
+    newQueue = new int[capacity];
+    for(int i = 0; i < oldSize; ++i) {
+      newQueue[i] = theQueue[(front + i)%oldSize];
     }
   }
 
@@ -36,13 +40,24 @@ void Queue::enqueue(int value) {
 }
 
 int Queue::dequeue() {
-  assert(numElements > 0);
+  assert(numElements != 0);
 
   int initialSize = size();
 
-  if(numElements <= capacity*.25) {
+  int* newQueue;
+
+  if(numElements <= capacity*.25) {  
     capacity = initialSize/2;
+    newQueue = new int[capacity];
+    for(int i = 0; i < numElements; ++i) {
+      newQueue[i] = theQueue[i];
+    }
   }
+
+  delete[] theQueue;
+
+  theQueue = newQueue;
+
   int result = theQueue[front];
   front = (front + 1)%capacity;
   numElements--;
@@ -50,7 +65,7 @@ int Queue::dequeue() {
 }
 
 int Queue::peek() {
-  return theQueue[back];
+  return theQueue[front];
 }
 
 int Queue::size() {
@@ -58,5 +73,8 @@ int Queue::size() {
 }
 
 bool Queue::isEmpty() {
-  return true;
+  if(numElements == 0) {
+    return true;
+  }
+  return false;
 }

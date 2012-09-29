@@ -3,7 +3,7 @@
 
 TEST(QueueTest, Push) {
   Queue* q = new Queue();
-  q->push(6);
+  q->enqueue(6);
 
   EXPECT_EQ(6, q->peek());
   delete q;

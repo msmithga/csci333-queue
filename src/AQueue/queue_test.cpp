@@ -5,16 +5,16 @@ using std::cout;
 using std::endl;
 
 int main() {
-  Queue* queue = new Queue(5);
-  for(int i = 0; i <= 5; ++i) {
-    queue->enqueue(i);
+  Queue* q = new Queue(12);
+  for(int i = 0; i < 2; ++i) {
+    q->enqueue(i);
   }
 
-  for(int i = 0; i <= 5; ++i) {
-    cout << queue->dequeue() << endl;
+  for(int i = 0; i < 2; ++i) {
+    cout << q->dequeue() << endl;
   }
 
-  delete queue;
+  delete q;
 
   return 0;
 

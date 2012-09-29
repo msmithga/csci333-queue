@@ -2,8 +2,9 @@
 #include <iostream>
 #include <assert.h>
 
-Node::Node(int value) {
-  Node* n = value;
+Node::Node(int num) {
+  value = num;
+  next = 0;
 }
 
 Node::~Node() {
@@ -11,14 +12,13 @@ Node::~Node() {
 }
 
 int Node::getValue() {
-  value = front;
   return value;
 }
 
 Node* Node::getNext() {
-  return Node*;
+  return next;
 }
 
 void Node::setNext(Node*& n) {
-  next = Node*& n;
+  next = n;
 }

@@ -6,27 +6,44 @@ Queue::Queue() {
   front = 0;
   back = 0;
   numElements = 0;
-  capacity = 0;
 }
 
 Queue::~Queue(){
-  for(int i = 0; i <= capacity; ++i) {
+  for(int i = 0; i < numElements; ++i) {
     dequeue();
-    numElements--;
   }
+
   assert(numElements == 0);
 }
 
 void Queue::enqueue(int value) {
-  Node* n = new Node(value);
-  back = (back + 1)%capacity;
-  theQueue[back] = n;
+  theQueue = new Node(value);
+ 
+  if(isEmpty()) {
+    front = theQueue;
+  }else {
+    back->setNext(theQueue);
+  }
+
+  back = theQueue;
+ 
   numElements++;
 }
 
 int Queue::dequeue() {
-  int result = theQueue[front];
-  front = (front + 1)%capacity;
+  assert(numElements != 0);
+  Node* tempNode;
+  int result = front->getValue();
+
+  tempNode = front->getNext();
+
+  delete front;
+  front = tempNode;
+
+  if(front == 0) {
+    back = 0;
+  }
+
   numElements--;
   return result;
 }
@@ -41,6 +58,9 @@ int Queue::size() {
 }
 
 bool Queue::isEmpty() {
+  if(front == 0) {
   return true;
+  }
+  return false;
 }
 

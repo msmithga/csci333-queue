@@ -7,7 +7,7 @@ class Node {
   Node* next;
 
  public:
-  Node(int value);
+  Node(int num);
   ~Node();
   int getValue();
   Node* getNext();

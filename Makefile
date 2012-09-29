@@ -8,10 +8,10 @@ CPPFLAGS = -Wall -Wextra
 
 all: $(BUILD)/main $(TEST)/queue_test
 
-$(BUILD)/main: $(SRC)/Queue.cpp $(SRC)/Queue.o
+$(BUILD)/main:
 	cd $(SRC); $(MAKE)
 
-$(TEST)/queue_test: $(TEST)/Queue.cpp $(SRC)/Queue.o
+$(TEST)/queue_test: $(TEST)/Queue.cpp 
 	cd $(TEST); $(MAKE)
 
 clean:
