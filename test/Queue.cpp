@@ -1,7 +1,9 @@
 #include "gtest/gtest.h"
-#include "../src/Queue.h"
+#include "../src/AQueue/Queue.h"
+#include "../src/LQueue/Queue.h"
+#include "../src/LLQueue/Queue.h"
 
-TEST(QueueTest, Push) {
+TEST(QueueTest, Enqueue) {
   Queue* q = new Queue();
   q->enqueue(6);
 
